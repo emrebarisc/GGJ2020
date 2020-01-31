@@ -3,7 +3,7 @@
 	<Cameras>
 		<Camera id = "1">
       <Projection>Orthographic</Projection>
-			<Position>0 0 5</Position>
+			<Position>4 8 25</Position>
 			<Gaze>0 0 -1.0</Gaze>
 			<Up>0 1.0 0</Up>
 			<NearPlane>-0.28125 0.28125 -0.5 0.5</NearPlane>
@@ -12,6 +12,15 @@
 		</Camera>
 	</Cameras>
 
+  <Lights>
+    <AmbientLight>100 100 100</AmbientLight>
+    <DirectionalLight>
+      <Direction>0.0 0.0 -1.0</Direction>
+      <Color>1.0 1.0 1.0</Color>
+      <Intensity>0.1</Intensity>
+    </DirectionalLight>
+  </Lights>
+  
   <Textures>
   </Textures>
 
@@ -19,12 +28,74 @@
   </Shaders>
 	
 	<Materials>
+    <Material id="0">
+      <AmbientReflectance>1.0 1.0 1.0</AmbientReflectance>
+      <DiffuseReflectance>1.0 0.0 0.0</DiffuseReflectance>
+      <SpecularReflectance>0.0 0.0 0.0</SpecularReflectance>
+      <PhongExponent>0</PhongExponent>
+    </Material>
 	</Materials>
 
   <Meshes>
+    <Mesh id = "0">
+      <Name>CubeTopLeft</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeTopLeft.ply</PLYPath>
+    </Mesh>
+    <Mesh id = "1">
+      <Name>CubeTopRight</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeTopRight.ply</PLYPath>
+    </Mesh>
+    <Mesh id = "2">
+      <Name>CubeBottomLeft</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeBottomLeft.ply</PLYPath>
+    </Mesh>
+    <Mesh id = "3">
+      <Name>CubeBottomRight</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeBottomRight.ply</PLYPath>
+    </Mesh>
 	</Meshes>
 
   <Objects>
+    <!--<MeshObject id = "0">
+      <RelativePosition>0 0 0</RelativePosition>
+      <RelativeRotation>0 0 0</RelativeRotation>
+      <RelativeScaling>1 1 1</RelativeScaling>
+      <WorldPosition>0 1.1 0</WorldPosition>
+      <WorldRotation>0 0 0</WorldRotation>
+      <WorldScaling>1 1 1</WorldScaling>
+      <Mesh>0</Mesh>
+    </MeshObject>
+    <MeshObject id = "1">
+      <RelativePosition>0 0 0</RelativePosition>
+      <RelativeRotation>0 0 0</RelativeRotation>
+      <RelativeScaling>1 1 1</RelativeScaling>
+      <WorldPosition>1.6 1.1 0</WorldPosition>
+      <WorldRotation>0 0 0</WorldRotation>
+      <WorldScaling>1 1 1</WorldScaling>
+      <Mesh>1</Mesh>
+    </MeshObject>
+    <MeshObject id = "0">
+      <RelativePosition>0 0 0</RelativePosition>
+      <RelativeRotation>0 0 0</RelativeRotation>
+      <RelativeScaling>1 1 1</RelativeScaling>
+      <WorldPosition>0 0 0</WorldPosition>
+      <WorldRotation>0 0 0</WorldRotation>
+      <WorldScaling>1 1 1</WorldScaling>
+      <Mesh>2</Mesh>
+    </MeshObject>
+    <MeshObject id = "1">
+      <RelativePosition>0 0 0</RelativePosition>
+      <RelativeRotation>0 0 0</RelativeRotation>
+      <RelativeScaling>1 1 1</RelativeScaling>
+      <WorldPosition>1.6 0 0</WorldPosition>
+      <WorldRotation>0 0 0</WorldRotation>
+      <WorldScaling>1 1 1</WorldScaling>
+      <Mesh>3</Mesh>
+    </MeshObject>-->
   </Objects>
 
 </Scene>

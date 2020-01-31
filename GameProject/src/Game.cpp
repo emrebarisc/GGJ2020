@@ -34,7 +34,7 @@ Game::Game() : Application()
 	lastFrameTimePoint = currentTimePoint;
 
 	//airplaneGameObject = new Airplane();
-	cameraController = new CameraController();
+	//cameraController = new CameraController();
 }
 
 void Game::Run()
