@@ -1,0 +1,14 @@
+# Folders
+.vs/
+bin/
+obj/
+
+# Files
+*.sln
+*.user
+*.vcxproj
+*.filters
+GameProject/Goknar.dll
+Goknar/outsourced/spdlog
+Goknar/outsourced/imgui/imgui
+Goknar/outsourced/GLFW/GLFW
