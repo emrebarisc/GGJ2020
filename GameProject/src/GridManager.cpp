@@ -4,13 +4,32 @@
 
 GridManager* GridManager::instance_ = nullptr;
 
+void GridManager::PrintGridManager() const
+{
+	std::cout << " -------------------------------------------------------------- " << std::endl;
+	for (int y = gridHeight_ - 1; 0 < y ; y--)
+	{
+		for (int x = 0; x < gridWidth_; x++)
+		{
+			std::cout << (grid_[y][x] != nullptr) << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
 void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldPosition)
 {
 	Vector2i gridPosition = ConvertWorldPositionToGridPosition(worldPosition);
+
+	if (gridHeight_ <= gridPosition.y)
+	{
+		return;
+	}
 	
 	if (gridPosition.y == 0 || (grid_[gridPosition.y][gridPosition.x] != nullptr && grid_[gridPosition.y][gridPosition.x] != caller))
 	{
 		caller->StopMovement();
+		PrintGridManager();
 	}
 	else
 	{
@@ -22,6 +41,11 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 bool GridManager::IsGridEmpty(const Vector3& worldPosition)
 {
 	Vector2i gridPosition = ConvertWorldPositionToGridPosition(worldPosition);
+
+	if (gridHeight_ <= gridPosition.y)
+	{
+		return false;
+	}
 
 	return 0 <= gridPosition.x && gridPosition.x < gridWidth_ && grid_[gridPosition.y][gridPosition.x] == nullptr;
 }
@@ -48,14 +72,14 @@ GridManager::~GridManager()
 
 Vector2i GridManager::ConvertWorldPositionToGridPosition(const Vector3& worldPosition)
 {
-	return Vector2i(mathClamp(floor(worldPosition.x) + 4, -1, gridWidth_), mathClamp(floor(worldPosition.y), 0, gridHeight_));
+	return Vector2i(mathClamp(floor(worldPosition.x) + 4, -1, gridWidth_), floor(worldPosition.y));
 }
 
 void GridManager::SetGridPosition(MovableObject* caller, const Vector2i& gridPosition)
 {
-	if (grid_[gridPosition.y - 1][gridPosition.x] == caller)
+	if (gridPosition.y < (gridHeight_ - 1) && grid_[gridPosition.y + 1][gridPosition.x] == caller)
 	{
-		grid_[gridPosition.y - 1][gridPosition.x] = nullptr;
+		grid_[gridPosition.y + 1][gridPosition.x] = nullptr;
 	}
 	else if (grid_[gridPosition.y][gridPosition.x - 1] == caller)
 	{

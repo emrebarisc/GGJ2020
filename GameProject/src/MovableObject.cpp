@@ -47,6 +47,10 @@ void MovableObject::StopMovement()
 {
 	fallSpeed_ = 0.f;
 	isMovementEnded_ = true;
+	Vector3 currentPosition = GetWorldPosition();
+	Vector3 correctedPosition(currentPosition.x, ceil(currentPosition.y), currentPosition.z);
+	SetWorldPosition(correctedPosition);
+
 	MovableObjectFactory::GetInstance()->CreateMovableObject(1);
 }
 

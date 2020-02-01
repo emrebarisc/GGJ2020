@@ -20,6 +20,8 @@ public:
 		return instance_;
 	}
 
+	void PrintGridManager() const;
+
 	void NotifyGridManager(MovableObject* caller, const Vector3& worldPosition);
 	bool IsGridEmpty(const Vector3& worldPosition);
 
