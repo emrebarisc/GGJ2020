@@ -10,6 +10,8 @@ public:
 	void BeginGame() override;
 	void Tick(float deltaTime) override;
 
+	int GetType();
+
 private:
 	void MoveLeft();
 	void MoveRight();
@@ -19,5 +21,8 @@ private:
 	void DecreaseFallSpeed();
 
 	float fallSpeed_;
+
+protected:
+	int type_;
 };
 

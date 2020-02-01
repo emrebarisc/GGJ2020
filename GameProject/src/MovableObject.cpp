@@ -69,3 +69,8 @@ void MovableObject::DecreaseFallSpeed()
 {
 	fallSpeed_ /= 4.f;
 }
+
+int MovableObject::GetType()
+{
+	return type_;
+}
