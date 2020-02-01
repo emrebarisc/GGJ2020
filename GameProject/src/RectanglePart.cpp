@@ -12,11 +12,11 @@ RectanglePart::RectanglePart()
 	int type = rand() % 4;
 
 	type_ = type;
-
+	//std::cout << type_ << std::endl;
 	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
 
 	meshComponent_ = new MeshComponent(this);
-	meshComponent_->SetMesh(engine->GetApplication()->GetMainScene()->GetMesh(1));
+	meshComponent_->SetMesh(engine->GetApplication()->GetMainScene()->GetMesh(type_));
 }
 
 

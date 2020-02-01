@@ -8,13 +8,13 @@ public:
 	RectangleObject();
 	~RectangleObject();
 
+	void AddPartToRectangle(MovableObject* part);
 private:
 	RectanglePart* topLeft;
 	RectanglePart* topRight;
 	RectanglePart* bottomLeft;
 	RectanglePart* bottomRight;
 
-	void AddPartToRectangle(RectanglePart* part);
 	bool CheckRepaired();
 };
 
