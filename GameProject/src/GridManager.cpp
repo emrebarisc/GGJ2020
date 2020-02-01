@@ -45,7 +45,7 @@ GridManager::~GridManager()
 
 Vector2i GridManager::ConvertWorldPositionToGridPosition(const Vector3& worldPosition)
 {
-	return Vector2i(mathClamp(floor(worldPosition.x) + 4, -1, gridWidth_), mathClamp(floor(worldPosition.y), -1, gridHeight_));
+	return Vector2i(mathClamp(floor(worldPosition.x) + 4, -1, gridWidth_), mathClamp(floor(worldPosition.y), 0, gridHeight_));
 }
 
 void GridManager::SetGridPosition(MovableObject* caller, const Vector2i& gridPosition)
