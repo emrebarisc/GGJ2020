@@ -52,18 +52,19 @@ void MovableObject::StopMovement()
 
 void MovableObject::RollLeft()
 {
+	if (isMovementEnded_) return;
 	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(-90.f)));
 }
 
 void MovableObject::RollRight()
 {
+	if (isMovementEnded_) return;
 	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(90.f)));
 }
 
 void MovableObject::MoveLeft()
 {
 	if (isMovementEnded_) return;
-
 	Vector3 newPosition = GetWorldPosition() + Vector3(-1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{
@@ -74,7 +75,6 @@ void MovableObject::MoveLeft()
 void MovableObject::MoveRight()
 {
 	if (isMovementEnded_) return;
-
 	Vector3 newPosition = GetWorldPosition() + Vector3(1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{
