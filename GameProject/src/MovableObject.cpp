@@ -1,4 +1,5 @@
 #include "MovableObject.h"
+#include "MovableObjectFactory.h"
 
 #include "Goknar/Application.h"
 #include "Goknar/Camera.h"
@@ -16,6 +17,7 @@ MovableObject::MovableObject() : isMovementEnded_(false)
 {
 	SetTickable(true);
 
+	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
 	fallSpeed_ = 2.f;
 
 	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::Q, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollLeft, this));
@@ -32,7 +34,6 @@ MovableObject::~MovableObject()
 
 void MovableObject::BeginGame()
 {
-	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
 }
 
 void MovableObject::Tick(float deltaTime)
@@ -46,6 +47,7 @@ void MovableObject::StopMovement()
 {
 	fallSpeed_ = 0.f;
 	isMovementEnded_ = true;
+	MovableObjectFactory::GetInstance()->CreateMovableObject(1);
 }
 
 void MovableObject::RollLeft()
