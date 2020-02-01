@@ -6,7 +6,6 @@
 #include "Goknar/Application.h"
 #include "Goknar/Components/MeshComponent.h"
 
-
 RectanglePart::RectanglePart()
 {
 	srand(time(0));
@@ -21,4 +20,14 @@ RectanglePart::RectanglePart()
 
 RectanglePart::~RectanglePart()
 {
+}
+
+void RectanglePart::SetParent(RepairableObject* parent)
+{
+	parentObject_ = parent;
+}
+
+RepairableObject* RectanglePart::GetParent( )
+{
+	return parentObject_;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Goknar\ObjectBase.h"
+#include "RepairableObject.h"
 
 class MovableObject : public ObjectBase
 {
@@ -9,13 +10,16 @@ public:
 
 	void BeginGame() override;
 	void Tick(float deltaTime) override;
+	virtual void SetParent(RepairableObject* parent) = 0;
+	virtual RepairableObject* GetParent() = 0;
 
 	void StopMovement();
 	int GetType();
 
 protected:
-
 	int type_;
+	RepairableObject* parentObject_;
+
 private:
 	void MoveLeft();
 	void MoveRight();
@@ -24,11 +28,10 @@ private:
 	void IncreaseFallSpeed();
 	void DecreaseFallSpeed();
 
-	float fallSpeed_;
 
 	float width_;
 	float height_;
-
+	float fallSpeed_;
 	bool isMovementEnded_;
 };
 
