@@ -32,43 +32,40 @@ MovableObject::~MovableObject()
 
 void MovableObject::BeginGame()
 {
-	SetWorldPosition(Vector3(0.f, 0.f, 0.f));
+	SetWorldPosition(Vector3(4.f, 20.f, 0.f));
 }
 
 void MovableObject::Tick(float deltaTime)
 {
-	/*float elapsedTime = 0.f;
-	elapsedTime += deltaTime;*/
-
 	SetWorldPosition(GetWorldPosition() + Vector3(0.f, -1.f, 0.f) * fallSpeed_ * deltaTime);
 }
 
 void MovableObject::RollLeft()
 {
-	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, -90.f));
+	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(-90.f)));
 }
 
 void MovableObject::RollRight()
 {
-	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, 90.f));
+	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(90.f)));
 }
 
 void MovableObject::MoveLeft()
 {
-	SetWorldPosition(GetWorldPosition() + Vector3(1.f, 0.f, 0.f));
+	SetWorldPosition(GetWorldPosition() + Vector3(-1.f, 0.f, 0.f));
 }
 
 void MovableObject::MoveRight()
 {
-	SetWorldPosition(GetWorldPosition() + Vector3(-1.f, 0.f, 0.f));
+	SetWorldPosition(GetWorldPosition() + Vector3(1.f, 0.f, 0.f));
 }
 
 void MovableObject::IncreaseFallSpeed()
 {
-	fallSpeed_ *= 2.f;
+	fallSpeed_ *= 4.f;
 }
 
 void MovableObject::DecreaseFallSpeed()
 {
-	fallSpeed_ /= 2.f;
+	fallSpeed_ /= 4.f;
 }
