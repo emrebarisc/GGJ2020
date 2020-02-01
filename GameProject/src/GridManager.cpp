@@ -29,13 +29,9 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 	if (gridPosition.y == 0 || (grid_[gridPosition.y][gridPosition.x] != nullptr && grid_[gridPosition.y][gridPosition.x] != caller))
 	{
 		caller->StopMovement();
+		SetGridPosition(caller, gridPosition + Vector2i(0, 1));
 		PrintGridManager();
 	}
-	else
-	{
-		SetGridPosition(caller, gridPosition);
-	}
-
 }
 
 bool GridManager::IsGridEmpty(const Vector3& worldPosition)
