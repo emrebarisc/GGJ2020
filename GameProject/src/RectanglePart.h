@@ -10,6 +10,7 @@ public:
 	~RectanglePart();
 
 private:
+
 	MeshComponent* meshComponent_;
 };
 

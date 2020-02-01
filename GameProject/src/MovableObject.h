@@ -11,6 +11,7 @@ public:
 	void Tick(float deltaTime) override;
 
 	void StopMovement();
+	int GetType();
 
 private:
 	void MoveLeft();
@@ -24,5 +25,6 @@ private:
 
 	float width_;
 	float height_;
+	int type_;
 };
 
