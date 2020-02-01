@@ -12,7 +12,7 @@
 
 #include "GridManager.h"
 
-MovableObject::MovableObject()
+MovableObject::MovableObject() : isMovementEnded_(false)
 {
 	SetTickable(true);
 
@@ -37,6 +37,7 @@ void MovableObject::BeginGame()
 
 void MovableObject::Tick(float deltaTime)
 {
+	if (isMovementEnded_) return;
 	SetWorldPosition(GetWorldPosition() + Vector3(0.f, -1.f, 0.f) * fallSpeed_ * deltaTime);
 	GridManager::GetInstance()->NotifyGridManager(this, GetWorldPosition());
 }
@@ -44,6 +45,7 @@ void MovableObject::Tick(float deltaTime)
 void MovableObject::StopMovement()
 {
 	fallSpeed_ = 0.f;
+	isMovementEnded_ = true;
 }
 
 void MovableObject::RollLeft()
@@ -58,8 +60,9 @@ void MovableObject::RollRight()
 
 void MovableObject::MoveLeft()
 {
-	Vector3 newPosition = GetWorldPosition() + Vector3(-1.f, 0.f, 0.f);
+	if (isMovementEnded_) return;
 
+	Vector3 newPosition = GetWorldPosition() + Vector3(-1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{
 		SetWorldPosition(newPosition);
@@ -68,8 +71,9 @@ void MovableObject::MoveLeft()
 
 void MovableObject::MoveRight()
 {
-	Vector3 newPosition = GetWorldPosition() + Vector3(1.f, 0.f, 0.f);
+	if (isMovementEnded_) return;
 
+	Vector3 newPosition = GetWorldPosition() + Vector3(1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{
 		SetWorldPosition(newPosition);

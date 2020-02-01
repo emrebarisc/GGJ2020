@@ -13,6 +13,9 @@ public:
 	void StopMovement();
 	int GetType();
 
+protected:
+
+	int type_;
 private:
 	void MoveLeft();
 	void MoveRight();
@@ -25,6 +28,7 @@ private:
 
 	float width_;
 	float height_;
-	int type_;
+
+	bool isMovementEnded_;
 };
 
