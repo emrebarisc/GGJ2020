@@ -3,7 +3,7 @@
 	<Cameras>
 		<Camera id = "1">
       <Projection>Orthographic</Projection>
-			<Position>4 8 25</Position>
+			<Position>0 8 25</Position>
 			<Gaze>0 0 -1.0</Gaze>
 			<Up>0 1.0 0</Up>
 			<NearPlane>-0.28125 0.28125 -0.5 0.5</NearPlane>

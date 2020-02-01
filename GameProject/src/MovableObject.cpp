@@ -1,7 +1,5 @@
 #include "MovableObject.h"
 
-#include "Goknar/Scene.h"
-
 #include "Goknar/Application.h"
 #include "Goknar/Camera.h"
 #include "Goknar/Managers/CameraManager.h"
@@ -10,12 +8,15 @@
 #include "Goknar/Model/Mesh.h"
 #include "Goknar/Components/MeshComponent.h"
 #include "Goknar/Managers/InputManager.h"
+#include "Goknar/Scene.h"
+
+#include "GridManager.h"
 
 MovableObject::MovableObject()
 {
 	SetTickable(true);
 
-	fallSpeed_ = 1.f;
+	fallSpeed_ = 2.f;
 
 	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::Q, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollLeft, this));
 	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::E, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollRight, this));
@@ -25,19 +26,24 @@ MovableObject::MovableObject()
 	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::S, INPUT_ACTION::G_RELEASE, std::bind(&MovableObject::DecreaseFallSpeed, this));
 }
 
-
 MovableObject::~MovableObject()
 {
 }
 
 void MovableObject::BeginGame()
 {
-	SetWorldPosition(Vector3(4.f, 20.f, 0.f));
+	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
 }
 
 void MovableObject::Tick(float deltaTime)
 {
 	SetWorldPosition(GetWorldPosition() + Vector3(0.f, -1.f, 0.f) * fallSpeed_ * deltaTime);
+	GridManager::GetInstance()->NotifyGridManager(this, GetWorldPosition());
+}
+
+void MovableObject::StopMovement()
+{
+	fallSpeed_ = 0.f;
 }
 
 void MovableObject::RollLeft()
@@ -52,12 +58,22 @@ void MovableObject::RollRight()
 
 void MovableObject::MoveLeft()
 {
-	SetWorldPosition(GetWorldPosition() + Vector3(-1.f, 0.f, 0.f));
+	Vector3 newPosition = GetWorldPosition() + Vector3(-1.f, 0.f, 0.f);
+
+	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
+	{
+		SetWorldPosition(newPosition);
+	}
 }
 
 void MovableObject::MoveRight()
 {
-	SetWorldPosition(GetWorldPosition() + Vector3(1.f, 0.f, 0.f));
+	Vector3 newPosition = GetWorldPosition() + Vector3(1.f, 0.f, 0.f);
+
+	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
+	{
+		SetWorldPosition(newPosition);
+	}
 }
 
 void MovableObject::IncreaseFallSpeed()

@@ -1,7 +1,7 @@
 #pragma once
-#include "C:\Users\Cem\Desktop\GGJ2020\Goknar\src\Goknar\ObjectBase.h"
-class MovableObject :
-	public ObjectBase
+#include "Goknar\ObjectBase.h"
+
+class MovableObject : public ObjectBase
 {
 public:
 	MovableObject();
@@ -9,6 +9,8 @@ public:
 
 	void BeginGame() override;
 	void Tick(float deltaTime) override;
+
+	void StopMovement();
 
 private:
 	void MoveLeft();
@@ -19,5 +21,8 @@ private:
 	void DecreaseFallSpeed();
 
 	float fallSpeed_;
+
+	float width_;
+	float height_;
 };
 
