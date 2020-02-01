@@ -13,6 +13,8 @@ RectanglePart::RectanglePart()
 
 	type_ = type;
 
+	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
+
 	meshComponent_ = new MeshComponent(this);
 	meshComponent_->SetMesh(engine->GetApplication()->GetMainScene()->GetMesh(1));
 }

@@ -44,7 +44,7 @@ vec3 CalculateDirectionalLightColor(vec3 direction, vec3 intensity)
 }
 
 vec3 DirectionalLight0Direction = vec3(0.000000, 0.000000, -1.000000);
-vec3 DirectionalLight0Intensity = vec3(0.100000, 0.100000, 0.100000);
+vec3 DirectionalLight0Intensity = vec3(0.200000, 0.200000, 0.200000);
 
 void main()
 {

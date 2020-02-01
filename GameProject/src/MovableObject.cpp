@@ -16,8 +16,6 @@
 MovableObject::MovableObject() : isMovementEnded_(false)
 {
 	SetTickable(true);
-
-	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
 	fallSpeed_ = 2.f;
 
 	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::Q, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollLeft, this));

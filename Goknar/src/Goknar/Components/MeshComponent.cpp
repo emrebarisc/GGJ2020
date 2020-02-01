@@ -4,9 +4,11 @@
 
 #include "Goknar/Engine.h"
 #include "Goknar/Model/MeshInstance.h"
+#include "Goknar/ObjectBase.h"
 
 MeshComponent::MeshComponent(ObjectBase* parent) : Component(parent), meshInstance_(new MeshInstance(this))
 {
+	WorldTransformationMatrixIsUpdated(parent->GetWorldTransformationMatrix());
 }
 
 MeshComponent::~MeshComponent()
