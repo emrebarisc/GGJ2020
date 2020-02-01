@@ -50,7 +50,7 @@ bool GridManager::IsGridEmpty(const Vector3& worldPosition)
 	return 0 <= gridPosition.x && gridPosition.x < gridWidth_ && grid_[gridPosition.y][gridPosition.x] == nullptr;
 }
 
-GridManager::GridManager() : gridWidth_(8), gridHeight_(16)
+GridManager::GridManager() : gridWidth_(9), gridHeight_(16)
 {
 	grid_ = new MovableObject**[gridHeight_];
 
