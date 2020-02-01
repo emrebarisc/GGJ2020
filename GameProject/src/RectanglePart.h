@@ -11,6 +11,8 @@ public:
 
 private:
 
+	void SetParent(RepairableObject* parent);
+	RepairableObject* GetParent();
 	MeshComponent* meshComponent_;
 };
 

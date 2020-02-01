@@ -88,12 +88,12 @@ void MovableObject::MoveRight()
 
 void MovableObject::IncreaseFallSpeed()
 {
-	fallSpeed_ *= 4.f;
+	fallSpeed_ = 8.f;
 }
 
 void MovableObject::DecreaseFallSpeed()
 {
-	fallSpeed_ /= 4.f;
+	fallSpeed_ = 2.f;
 }
 
 int MovableObject::GetType()
