@@ -1,11 +1,12 @@
 #pragma once
 #include "RectanglePart.h"
+#include "RepairableObject.h"
 
-class Rectangle
+class RectangleObject : public RepairableObject
 {
 public:
-	Rectangle();
-	~Rectangle();
+	RectangleObject();
+	~RectangleObject();
 
 private:
 	RectanglePart* topLeft;
@@ -14,5 +15,6 @@ private:
 	RectanglePart* bottomRight;
 
 	void AddPartToRectangle(RectanglePart* part);
+	bool CheckRepaired();
 };
 

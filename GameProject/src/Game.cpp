@@ -1,6 +1,7 @@
 #include <Goknar.h>
 
 #include "RectanglePart.h"
+#include "RectangleObject.h"
 #include "Airplane.h"
 #include "CameraController.h"
 #include "Goknar/Scene.h"
@@ -21,6 +22,7 @@ private:
 	Airplane* airplaneGameObject;
 	CameraController* cameraController;
 	RectanglePart* rectanglePartGameObject;
+	RectangleObject* rectangleGameObject;
 };
 
 Game::Game() : Application()
@@ -37,6 +39,7 @@ Game::Game() : Application()
 
 	//airplaneGameObject = new Airplane();
 	//cameraController = new CameraController();
+	rectangleGameObject = new RectangleObject();
 	rectanglePartGameObject = new RectanglePart();
 }
 
