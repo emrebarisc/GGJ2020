@@ -7,7 +7,7 @@ GridManager* GridManager::instance_ = nullptr;
 void GridManager::PrintGridManager() const
 {
 	std::cout << " -------------------------------------------------------------- " << std::endl;
-	for (int y = gridHeight_ - 1; 0 < y ; y--)
+	for (int y = gridHeight_ - 1; 0 <= y ; y--)
 	{
 		for (int x = 0; x < gridWidth_; x++)
 		{
@@ -26,10 +26,10 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		return;
 	}
 	
-	if (gridPosition.y == 0 || (grid_[gridPosition.y][gridPosition.x] != nullptr && grid_[gridPosition.y][gridPosition.x] != caller))
+	if (gridPosition.y == 0 || grid_[gridPosition.y - 1][gridPosition.x] != nullptr)
 	{
 		caller->StopMovement();
-		SetGridPosition(caller, gridPosition + Vector2i(0, 1));
+		SetGridPosition(caller, gridPosition);
 		PrintGridManager();
 	}
 }
@@ -73,18 +73,5 @@ Vector2i GridManager::ConvertWorldPositionToGridPosition(const Vector3& worldPos
 
 void GridManager::SetGridPosition(MovableObject* caller, const Vector2i& gridPosition)
 {
-	if (gridPosition.y < (gridHeight_ - 1) && grid_[gridPosition.y + 1][gridPosition.x] == caller)
-	{
-		grid_[gridPosition.y + 1][gridPosition.x] = nullptr;
-	}
-	else if (grid_[gridPosition.y][gridPosition.x - 1] == caller)
-	{
-		grid_[gridPosition.y][gridPosition.x - 1] = nullptr;
-	}
-	else if (grid_[gridPosition.y][gridPosition.x + 1] == caller)
-	{
-		grid_[gridPosition.y][gridPosition.x + 1] = nullptr;
-	}
-
 	grid_[gridPosition.y][gridPosition.x] = caller;
 }

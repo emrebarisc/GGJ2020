@@ -74,14 +74,7 @@ public:
 		return Vector3(worldTransformationMatrix_[1], worldTransformationMatrix_[5], worldTransformationMatrix_[9]);
 	}
 
-	void SetIsRendered(bool isRendered)
-	{
-		isRendered_ = isRendered;
-		for (int i = 0; i < components_.size(); i++)
-		{
-			components_[i]->SetIsRendered(isRendered);
-		}
-	}
+	void SetIsRendered(bool isRendered);
 
 	bool GetIsRendered() const
 	{
