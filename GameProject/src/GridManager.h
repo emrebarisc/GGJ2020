@@ -19,10 +19,12 @@ public:
 
 		return instance_;
 	}
-
+	MovableObject* currentObject_;
 	void PrintGridManager() const;
 
 	void NotifyGridManager(MovableObject* caller, const Vector3& worldPosition);
+	void CheckAndSetObjectParent(MovableObject* caller, const Vector2i& worldPosition);
+	void ClearRepairedObject(MovableObject * caller);
 	bool IsGridEmpty(const Vector3& worldPosition);
 
 private:

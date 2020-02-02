@@ -13,7 +13,7 @@
 
 #include "GridManager.h"
 
-MovableObject::MovableObject() : isMovementEnded_(false)
+MovableObject::MovableObject() : isMovementEnded_(false), canFall_(true)
 {
 	SetTickable(true);
 	fallSpeed_ = 2.f;
@@ -36,20 +36,25 @@ void MovableObject::BeginGame()
 
 void MovableObject::Tick(float deltaTime)
 {
-	if (isMovementEnded_) return;
+	if (!canFall_)	return;
 	SetWorldPosition(GetWorldPosition() + Vector3(0.f, -1.f, 0.f) * fallSpeed_ * deltaTime);
 	GridManager::GetInstance()->NotifyGridManager(this, GetWorldPosition());
+}
+
+void MovableObject::ResetFallSpeed()
+{
+	fallSpeed_ = 2.f;
+	canFall_ = true;
 }
 
 void MovableObject::StopMovement()
 {
 	fallSpeed_ = 0.f;
 	isMovementEnded_ = true;
+	canFall_ = false;
 	Vector3 currentPosition = GetWorldPosition();
 	Vector3 correctedPosition(currentPosition.x, ceil(currentPosition.y), currentPosition.z);
 	SetWorldPosition(correctedPosition);
-
-	MovableObjectFactory::GetInstance()->CreateMovableObject(1);
 }
 
 void MovableObject::RollLeft()

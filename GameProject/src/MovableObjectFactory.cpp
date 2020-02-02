@@ -1,4 +1,6 @@
 #include "MovableObjectFactory.h"
+#include "GridManager.h"
+
 MovableObjectFactory* MovableObjectFactory::instance_ = nullptr;
 MovableObjectFactory* MovableObjectFactory::GetInstance()
 {
@@ -13,7 +15,8 @@ MovableObject* MovableObjectFactory::CreateMovableObject(int type)
 	switch (type)
 	{
 	case 1: 
-		return new RectanglePart();
+		GridManager::GetInstance()->currentObject_ = new RectanglePart();
+		return GridManager::GetInstance()->currentObject_;
 		break;
 	default:
 		return nullptr;

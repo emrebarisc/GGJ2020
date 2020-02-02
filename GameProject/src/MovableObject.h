@@ -12,7 +12,7 @@ public:
 	void Tick(float deltaTime) override;
 	virtual void SetParent(RepairableObject* parent) = 0;
 	virtual RepairableObject* GetParent() = 0;
-
+	void ResetFallSpeed();
 	void StopMovement();
 	int GetType();
 
@@ -33,5 +33,6 @@ private:
 	float height_;
 	float fallSpeed_;
 	bool isMovementEnded_;
+	bool canFall_;
 };
 

@@ -1,5 +1,5 @@
 #include "RectangleObject.h"
-
+#include "GridManager.h"
 
 
 RectangleObject::RectangleObject()
@@ -41,6 +41,10 @@ void RectangleObject::AddPartToRectangle(MovableObject* part)
 		}
 		break;
 	}
-	if (CheckRepaired())
-		std::cout << "YEYYYYY" << std::endl;
+	if (CheckRepaired()) {
+		GridManager::GetInstance()->ClearRepairedObject(bottomLeft);
+		GridManager::GetInstance()->ClearRepairedObject(bottomRight);
+		GridManager::GetInstance()->ClearRepairedObject(topLeft);
+		GridManager::GetInstance()->ClearRepairedObject(topRight);
+	}
 }

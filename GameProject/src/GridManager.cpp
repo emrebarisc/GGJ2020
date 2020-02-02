@@ -1,6 +1,7 @@
 #include "GridManager.h"
 
 #include "MovableObject.h"
+#include "MovableObjectFactory.h"
 #include "RectangleObject.h"
 #include "RepairableObject.h"
 
@@ -27,12 +28,14 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 	{
 		return;
 	}
-	if (gridPosition.y == 0 || (grid_[gridPosition.y][gridPosition.x] != nullptr && grid_[gridPosition.y][gridPosition.x] != caller))
+	if (gridPosition.y == 0 || grid_[gridPosition.y - 1][gridPosition.x] != nullptr)
 	{
 		caller->StopMovement();
 		CheckAndSetObjectParent(caller, gridPosition);
-		SetGridPosition(caller, gridPosition + Vector2i(0, 1));
+		SetGridPosition(caller, gridPosition);
 		PrintGridManager();
+
+		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
 	}
 }
 
@@ -51,6 +54,7 @@ bool GridManager::IsGridEmpty(const Vector3& worldPosition)
 GridManager::GridManager() : gridWidth_(9), gridHeight_(16)
 {
 	grid_ = new MovableObject**[gridHeight_];
+	currentObject_ = nullptr;
 
 	for (int y = 0; y < gridHeight_; y++)
 	{
@@ -70,16 +74,15 @@ GridManager::~GridManager()
 
 void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i& gridPosition)
 {
+	bool isRepaired = false;
 	if (caller->GetType() == 0)
 	{
-		if (grid_[gridPosition.y][gridPosition.x + 1] != nullptr && grid_[gridPosition.y][gridPosition.x + 1]->GetType() == 1)
+		if (gridPosition.x + 1 < gridWidth_ && grid_[gridPosition.y][gridPosition.x + 1] != nullptr && grid_[gridPosition.y][gridPosition.x + 1]->GetType() == 1)
 		{
-			std::cout << "0 placed" << std::endl;
 			caller->SetParent(grid_[gridPosition.y][gridPosition.x + 1]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
 		else {
-			std::cout << "new parent" << std::endl;
 			caller->SetParent(new RectangleObject());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
@@ -88,12 +91,10 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 	{
 		if (gridPosition.x > 0 && grid_[gridPosition.y][gridPosition.x - 1] != nullptr && grid_[gridPosition.y][gridPosition.x - 1]->GetType() == 0)
 		{
-			std::cout << "1 placed" << std::endl;
 			caller->SetParent(grid_[gridPosition.y][gridPosition.x - 1]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
 		else {
-			std::cout << "new parent" << std::endl;
 			caller->SetParent(new RectangleObject());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
@@ -102,7 +103,6 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 	{
 		if (gridPosition.y > 0 && grid_[gridPosition.y - 1][gridPosition.x] != nullptr && grid_[gridPosition.y - 1][gridPosition.x]->GetType() == 0)
 		{
-			std::cout << "2 placed" << std::endl;
 			caller->SetParent(grid_[gridPosition.y - 1][gridPosition.x]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
@@ -111,9 +111,35 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 	{
 		if (gridPosition.y > 0 && grid_[gridPosition.y - 1][gridPosition.x] != nullptr && grid_[gridPosition.y - 1][gridPosition.x]->GetType() == 1)
 		{
-			std::cout << "3 placed" << std::endl;
 			caller->SetParent(grid_[gridPosition.y - 1][gridPosition.x]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
+		}
+	}
+}
+
+void GridManager::ClearRepairedObject(MovableObject* caller)
+{
+	if (caller != nullptr && caller->GetParent() != nullptr)
+	{
+		RepairableObject* callerParent = caller->GetParent();
+		for (int y = gridHeight_ - 1; 0 <= y; y--)
+		{
+			for (int x = 0; x < gridWidth_; x++)
+			{
+				if (grid_[y][x] == caller) {
+					grid_[y][x] = nullptr;
+					caller->SetIsRendered(false);
+					if (caller->GetType() == 2 || caller->GetType() == 3)
+					{
+						for (int i = y + 1; i < gridHeight_ - 1; i++)
+						{
+							if(grid_[i][x] != nullptr)
+								grid_[i][x]->ResetFallSpeed();
+						}
+					}
+					return;
+				}
+			}
 		}
 	}
 }
