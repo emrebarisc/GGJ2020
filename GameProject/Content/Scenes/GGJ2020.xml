@@ -20,15 +20,34 @@
       <Intensity>0.2</Intensity>
     </DirectionalLight>
   </Lights>
-  
+
   <Textures>
+    <Texture>
+      <Path>./Content/Textures/T_RetroRadio.png</Path>
+    </Texture>
   </Textures>
 
   <Shaders>
+    <Shader id="0">
+      <Type>
+        SelfContained
+      </Type>
+      <VertexShaderPath>
+        ./Content/Shaders/TextureVertexShader.glsl
+      </VertexShaderPath>
+      <FragmentShaderPath>
+        ./Content/Shaders/TextureFragmentShader.glsl
+      </FragmentShaderPath>
+      <Model>
+        Opaque
+      </Model>
+    </Shader>
   </Shaders>
 	
 	<Materials>
     <Material id="0">
+      <Shader id="0"/>
+      <Texture id="0"/>
       <AmbientReflectance>1.0 1.0 1.0</AmbientReflectance>
       <DiffuseReflectance>1.0 0.0 0.0</DiffuseReflectance>
       <SpecularReflectance>0.0 0.0 0.0</SpecularReflectance>

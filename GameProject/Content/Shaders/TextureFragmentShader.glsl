@@ -14,7 +14,7 @@ uniform sampler2D texture0;
 
 vec4 diffuseReflectance;
 
-vec3 sceneAmbient = vec3(0.2, 0.2, 0.2);
+vec3 sceneAmbient = vec3(0.392157, 0.392157, 0.392157);
 
 vec3 CalculateDirectionalLightColor(vec3 direction, vec3 intensity)
 {
@@ -22,7 +22,7 @@ vec3 CalculateDirectionalLightColor(vec3 direction, vec3 intensity)
 	float wiLength = length(wi);
 	wi /= wiLength;
 
-	if(dot(vertexNormal, wi) < 0.f) return vec3(0.f, 0.f, 0.f);
+	if (dot(vertexNormal, wi) < 0.f) return vec3(0.f, 0.f, 0.f);
 
 	float normalDotLightDirection = dot(vertexNormal, wi);
 
@@ -46,13 +46,8 @@ vec3 CalculateDirectionalLightColor(vec3 direction, vec3 intensity)
 	return clamp(color, 0.f, 1.f);
 }
 
-vec3 DirectionalLight0Direction = vec3(0.57735f, 0.57735f, -0.57735f);
-vec3 DirectionalLight0Intensity = vec3(1.0, 0.99, 0.83);
-
-float fogDistance = 150.f;
-float fogMinHeight = 0.f;
-float fogMaxHeight = 25.f;
-vec3 fogColor = vec3(0.90f);
+vec3 DirectionalLight0Direction = vec3(0.000000, 0.000000, -1.000000);
+vec3 DirectionalLight0Intensity = vec3(0.200000, 0.200000, 0.200000);
 
 void main()
 {
@@ -62,8 +57,5 @@ void main()
 	vec3 lightColor = sceneAmbient * ambientReflectance;
 	lightColor += CalculateDirectionalLightColor(DirectionalLight0Direction, DirectionalLight0Intensity);
 
-	float depthValue = clamp(length(fragmentPosition - viewPosition) / fogDistance, 0.f, 1.f);
-	depthValue = (fogMaxHeight - fogMinHeight) / (fragmentPosition.z - fogMinHeight) * depthValue;
-
-	fragmentColor = vec4(lightColor * (1.f - depthValue) + fogColor * depthValue, diffuseReflectance.a);
+	fragmentColor = vec4(lightColor, diffuseReflectance.a);
 }
