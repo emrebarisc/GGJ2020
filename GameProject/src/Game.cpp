@@ -1,11 +1,11 @@
 #include <Goknar.h>
 
-#include "RectanglePart.h"
-#include "RectangleObject.h"
-#include "MovableObjectFactory.h"
-#include "Airplane.h"
-#include "CameraController.h"
+// Engine includes
 #include "Goknar/Scene.h"
+
+// Game includes
+#include "GameController.h"
+#include "MovableObjectFactory.h"
 
 #include <chrono>
 
@@ -19,11 +19,7 @@ public:
 	void Run() override;
 
 private:
-
-	Airplane* airplaneGameObject;
-	CameraController* cameraController;
-	MovableObject* rectanglePartGameObject;
-	RectangleObject* rectangleGameObject;
+	GameController* gameController;
 };
 
 Game::Game() : Application()
@@ -38,10 +34,8 @@ Game::Game() : Application()
 
 	lastFrameTimePoint = currentTimePoint;
 
-	//airplaneGameObject = new Airplane();
-	//cameraController = new CameraController();
-	rectangleGameObject = new RectangleObject();
-	rectanglePartGameObject = MovableObjectFactory::GetInstance()->CreateMovableObject(1);
+	gameController = GameController::GetInstance();
+	MovableObjectFactory::GetInstance()->CreateMovableObject();
 }
 
 void Game::Run()

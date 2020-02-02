@@ -16,6 +16,8 @@ public:
 	MeshComponent(ObjectBase* parent);
 	~MeshComponent();
 
+	void Delete() override;
+
 	void SetMesh(Mesh* mesh);
 
 	const Matrix& GetRelativeTransformationMatrix() const

@@ -16,6 +16,12 @@ MeshComponent::~MeshComponent()
 
 }
 
+void MeshComponent::Delete()
+{
+	meshInstance_->RemoveFromRenderer();
+	delete meshInstance_;
+}
+
 void MeshComponent::SetMesh(Mesh* mesh)
 {
 	meshInstance_->SetMesh(mesh);

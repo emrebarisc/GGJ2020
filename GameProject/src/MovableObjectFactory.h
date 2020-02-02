@@ -6,7 +6,7 @@ class MovableObjectFactory
 {
 public:
 	static MovableObjectFactory* GetInstance();
-	MovableObject* CreateMovableObject(int type);
+	MovableObject* CreateMovableObject();
 
 private:
 	MovableObjectFactory();

@@ -16,6 +16,8 @@ public:
 
 	}
 
+	virtual void Delete() = 0;
+
 	const ObjectBase* GetParent() const
 	{
 		return parent_;

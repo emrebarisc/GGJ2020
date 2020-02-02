@@ -1,5 +1,6 @@
 #include "GridManager.h"
 
+#include "GameManager.h"
 #include "MovableObject.h"
 #include "MovableObjectFactory.h"
 #include "RectangleObject.h"
@@ -35,7 +36,7 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		CheckAndSetObjectParent(caller, gridPosition);
 		PrintGridManager();
 
-		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
+		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject();
 	}
 	else if (grid_[gridPosition.y - 1][gridPosition.x] != nullptr && !(grid_[gridPosition.y - 1][gridPosition.x]->canFall_ && grid_[gridPosition.y - 1][gridPosition.x]->isMovementEnded_))
 	{
@@ -44,7 +45,7 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		CheckAndSetObjectParent(caller, gridPosition);
 		PrintGridManager();
 
-		if (currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
+		if (currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject();
 	}
 }
 
@@ -126,6 +127,24 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 	}
 }
 
+void GridManager::ClearGrid()
+{
+	for (int y = 0; y < gridHeight_; y++)
+	{
+		for (int x = 0; x < gridWidth_; x++)
+		{
+			if (grid_[y][x] == nullptr)
+			{
+				continue;
+			}
+
+			grid_[y][x]->Delete();
+			delete grid_[y][x];
+			grid_[y][x] = nullptr;
+		}
+	}
+}
+
 void GridManager::ClearRepairedObject(MovableObject* caller)
 {
 	if (caller != nullptr && caller->GetParent() != nullptr)
@@ -163,5 +182,10 @@ Vector2i GridManager::ConvertWorldPositionToGridPosition(const Vector3& worldPos
 
 void GridManager::SetGridPosition(MovableObject* caller, const Vector2i& gridPosition)
 {
+	if (gridPosition.y == gridHeight_ - 1)
+	{
+		GameManager::GetInstance()->GameOver();
+	}
+
 	grid_[gridPosition.y][gridPosition.x] = caller;
 }

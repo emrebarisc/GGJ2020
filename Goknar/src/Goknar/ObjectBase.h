@@ -18,6 +18,8 @@ class GOKNAR_API ObjectBase
 public:
     ObjectBase();
 
+	void operator delete(void* object);
+
 	virtual void BeginGame()
 	{
 
@@ -27,6 +29,8 @@ public:
     {
 
     }
+
+	void Delete();
 
     void SetTickable(bool tickable);
 

@@ -159,7 +159,7 @@ void Renderer::AddMeshToRenderer(Mesh* mesh)
 	meshes_.push_back(mesh);
 }
 
-void Renderer::AddMeshInstanceToRenderer(MeshInstance* meshInstance)
+void Renderer::AddMeshInstance(MeshInstance* meshInstance)
 {
 	MaterialBlendModel materialShadingModel = meshInstance->GetMesh()->GetMaterial()->GetBlendModel();
 	switch (materialShadingModel)
@@ -175,5 +175,38 @@ void Renderer::AddMeshInstanceToRenderer(MeshInstance* meshInstance)
 		break;
 	default:
 		break;
+	}
+}
+
+void Renderer::RemoveMeshInstance(MeshInstance* object)
+{
+	int meshInstanceCount = opaqueMeshInstances_.size();
+	for (int meshInstanceIndex = 0; meshInstanceIndex < meshInstanceCount; meshInstanceIndex++)
+	{
+		if (opaqueMeshInstances_[meshInstanceIndex] == object)
+		{
+			opaqueMeshInstances_.erase(opaqueMeshInstances_.begin() + meshInstanceIndex);
+			return;
+		}
+	}
+	
+	meshInstanceCount = maskedMeshInstances_.size();
+	for (int meshInstanceIndex = 0; meshInstanceIndex < meshInstanceCount; meshInstanceIndex++)
+	{
+		if (maskedMeshInstances_[meshInstanceIndex] == object)
+		{
+			maskedMeshInstances_.erase(maskedMeshInstances_.begin() + meshInstanceIndex);
+			return;
+		}
+	}
+	
+	meshInstanceCount = translucentMeshInstances_.size();
+	for (int meshInstanceIndex = 0; meshInstanceIndex < meshInstanceCount; meshInstanceIndex++)
+	{
+		if (translucentMeshInstances_[meshInstanceIndex] == object)
+		{
+			translucentMeshInstances_.erase(translucentMeshInstances_.begin() + meshInstanceIndex);
+			return;
+		}
 	}
 }

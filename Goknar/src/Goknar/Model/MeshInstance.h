@@ -31,6 +31,8 @@ public:
 		componentId_ = componentId;
 	}
 
+	void RemoveFromRenderer();
+
 	void SetMesh(Mesh* mesh);
 
 	Mesh* GetMesh() const

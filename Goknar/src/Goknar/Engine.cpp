@@ -109,6 +109,12 @@ void Engine::Run()
 	std::chrono::steady_clock::time_point currentTimePoint = std::chrono::steady_clock::now();
 	while (!windowManager_->GetWindowShouldBeClosed())
 	{
+		if (1.f < deltaTime_)
+		{
+			deltaTime_ = 0.f;
+			continue;
+		}
+
 		{
 			static float oneSecondCounter = 0.f;
 			oneSecondCounter += deltaTime_;
@@ -155,9 +161,37 @@ void Engine::RegisterObject(ObjectBase* object)
 	registeredObjects_.push_back(object);
 }
 
+void Engine::RemoveObject(ObjectBase* object)
+{
+	int registeredObjectsSize = registeredObjects_.size();
+
+	for (int registeredObjectIndex = 0; registeredObjectIndex < registeredObjectsSize; registeredObjectIndex++)
+	{
+		if (registeredObjects_[registeredObjectIndex] == object)
+		{
+			registeredObjects_.erase(registeredObjects_.begin() + registeredObjectIndex);
+			return;
+		}
+	}
+}
+
 void Engine::AddToTickableObjects(ObjectBase* object)
 {
 	tickableObjects_.push_back(object);
+}
+
+void Engine::RemoveFromTickableObjects(ObjectBase* object)
+{
+	int tickableObjectsSize = tickableObjects_.size();
+
+	for (int tickableObjectIndex = 0; tickableObjectIndex < tickableObjectsSize; tickableObjectIndex++)
+	{
+		if (tickableObjects_[tickableObjectIndex] == object)
+		{
+			tickableObjects_.erase(tickableObjects_.begin() + tickableObjectIndex);
+			return;
+		}
+	}
 }
 
 void Engine::Exit()

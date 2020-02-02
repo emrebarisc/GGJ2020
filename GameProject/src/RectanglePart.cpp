@@ -14,7 +14,7 @@ RectanglePart::RectanglePart()
 
 	type_ = type;
 	//std::cout << type_ << std::endl;
-	SetWorldPosition(Vector3(0.f, 15.f, 0.f));
+	SetWorldPosition(Vector3(0.f, 16.f, 0.f));
 	//SetWorldRotation(Vector3(0.f, 0.f, PI * (rand() % 4)));
 
 	meshComponent_ = new MeshComponent(this);

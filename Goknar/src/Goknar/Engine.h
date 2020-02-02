@@ -65,8 +65,10 @@ public:
 
 	void SetShaderEngineVariables(Shader* shader);
 
-	void RegisterObject(ObjectBase *object);
-	void AddToTickableObjects(ObjectBase *object);
+	void RegisterObject(ObjectBase* object);
+	void RemoveObject(ObjectBase* object);
+	void AddToTickableObjects(ObjectBase* object);
+	void RemoveFromTickableObjects(ObjectBase* object);
 
 	void Exit();
 

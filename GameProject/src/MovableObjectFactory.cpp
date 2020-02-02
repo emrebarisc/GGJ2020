@@ -1,4 +1,5 @@
 #include "MovableObjectFactory.h"
+#include "GameManager.h"
 #include "GridManager.h"
 
 MovableObjectFactory* MovableObjectFactory::instance_ = nullptr;
@@ -10,14 +11,24 @@ MovableObjectFactory* MovableObjectFactory::GetInstance()
 	return instance_;
 }
 
-MovableObject* MovableObjectFactory::CreateMovableObject(int type)
+MovableObject* MovableObjectFactory::CreateMovableObject()
 {
+	if (GameManager::GetInstance()->GetIsGameOver())
+	{
+		return nullptr;
+	}
+
+	int type = rand() % 1;
+
 	switch (type)
 	{
-	case 1: 
-		GridManager::GetInstance()->currentObject_ = new RectanglePart();
-		return GridManager::GetInstance()->currentObject_;
+	case 0: 
+	{
+		RectanglePart* newRectanglePart = new RectanglePart();
+		GridManager::GetInstance()->SetCurrentObject(newRectanglePart);
+		return newRectanglePart;
 		break;
+	}
 	default:
 		return nullptr;
 	}

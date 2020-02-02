@@ -19,13 +19,23 @@ public:
 
 		return instance_;
 	}
-	MovableObject* currentObject_;
 	void PrintGridManager() const;
 
 	void NotifyGridManager(MovableObject* caller, const Vector3& worldPosition);
 	void CheckAndSetObjectParent(MovableObject* caller, const Vector2i& worldPosition);
+	void ClearGrid();
 	void ClearRepairedObject(MovableObject * caller);
 	bool IsGridEmpty(const Vector3& worldPosition);
+
+	MovableObject* GetCurrentObject() const
+	{
+		return currentObject_;
+	}
+
+	void SetCurrentObject(MovableObject* currentObject)
+	{
+		currentObject_ = currentObject;
+	}
 
 private:
 	GridManager();
@@ -38,6 +48,7 @@ private:
 	static GridManager* instance_;
 
 	MovableObject*** grid_;
+	MovableObject* currentObject_;
 
 	int gridWidth_;
 	int gridHeight_;
