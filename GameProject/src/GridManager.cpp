@@ -31,8 +31,8 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 	if (gridPosition.y == 0 || grid_[gridPosition.y - 1][gridPosition.x] != nullptr)
 	{
 		caller->StopMovement();
-		CheckAndSetObjectParent(caller, gridPosition);
 		SetGridPosition(caller, gridPosition);
+		CheckAndSetObjectParent(caller, gridPosition);
 		PrintGridManager();
 
 		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
