@@ -40,8 +40,8 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 	else if (grid_[gridPosition.y - 1][gridPosition.x] != nullptr && !(grid_[gridPosition.y - 1][gridPosition.x]->canFall_ && grid_[gridPosition.y - 1][gridPosition.x]->isMovementEnded_))
 	{
 		caller->StopMovement();
-		CheckAndSetObjectParent(caller, gridPosition);
 		SetGridPosition(caller, gridPosition);
+		CheckAndSetObjectParent(caller, gridPosition);
 		PrintGridManager();
 
 		if (currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
