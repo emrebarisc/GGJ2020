@@ -28,7 +28,7 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 	{
 		return;
 	}
-	if (gridPosition.y == 0 || grid_[gridPosition.y - 1][gridPosition.x] != nullptr)
+	if (gridPosition.y == 0 )
 	{
 		caller->StopMovement();
 		CheckAndSetObjectParent(caller, gridPosition);
@@ -36,6 +36,15 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		PrintGridManager();
 
 		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
+	}
+	else if (grid_[gridPosition.y - 1][gridPosition.x] != nullptr && !(grid_[gridPosition.y - 1][gridPosition.x]->canFall_ && grid_[gridPosition.y - 1][gridPosition.x]->isMovementEnded_))
+	{
+		caller->StopMovement();
+		CheckAndSetObjectParent(caller, gridPosition);
+		SetGridPosition(caller, gridPosition);
+		PrintGridManager();
+
+		if (currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject(1);
 	}
 }
 
@@ -133,8 +142,11 @@ void GridManager::ClearRepairedObject(MovableObject* caller)
 					{
 						for (int i = y + 1; i < gridHeight_ - 1; i++)
 						{
-							if(grid_[i][x] != nullptr)
+							if (grid_[i][x] != nullptr) {
+								
 								grid_[i][x]->ResetFallSpeed();
+								grid_[i][x] = nullptr;
+							}
 						}
 					}
 					return;
