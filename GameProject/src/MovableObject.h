@@ -15,6 +15,8 @@ public:
 	void ResetFallSpeed();
 	void StopMovement();
 	int GetType();
+	bool isMovementEnded_;
+	bool canFall_;
 
 protected:
 	int type_;
@@ -32,7 +34,5 @@ private:
 	float width_;
 	float height_;
 	float fallSpeed_;
-	bool isMovementEnded_;
-	bool canFall_;
 };
 
