@@ -121,6 +121,8 @@ void Renderer::Render()
 	
  	for (const MeshInstance* opaqueMeshInstance : opaqueMeshInstances_)
 	{
+		if (!opaqueMeshInstance->GetIsRendered()) continue;
+
 		const Mesh* mesh = opaqueMeshInstance->GetMesh();
 		opaqueMeshInstance->Render();
 
@@ -130,6 +132,8 @@ void Renderer::Render()
 
 	for (const MeshInstance* maskedMeshInstance : maskedMeshInstances_)
 	{
+		if (!maskedMeshInstance->GetIsRendered()) continue;
+
 		const Mesh* mesh = maskedMeshInstance->GetMesh();
 		maskedMeshInstance->Render();
 
@@ -140,6 +144,7 @@ void Renderer::Render()
 	glEnable(GL_BLEND);
 	for (const MeshInstance* translucentMeshInstance : translucentMeshInstances_)
 	{
+		if (!translucentMeshInstance->GetIsRendered()) continue;
 		const Mesh* mesh = translucentMeshInstance->GetMesh();
 		translucentMeshInstance->Render();
 

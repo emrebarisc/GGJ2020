@@ -73,6 +73,14 @@ public:
 	{
 		return Vector3(worldTransformationMatrix_[1], worldTransformationMatrix_[5], worldTransformationMatrix_[9]);
 	}
+
+	void SetIsRendered(bool isRendered);
+
+	bool GetIsRendered() const
+	{
+		return isRendered_;
+	}
+
 protected:
 
 private:
@@ -89,6 +97,8 @@ private:
 	int totalComponentCount_;
 
     bool tickable_;
+
+	bool isRendered_;
 };
 
 #endif

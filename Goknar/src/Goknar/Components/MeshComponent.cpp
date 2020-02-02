@@ -26,6 +26,12 @@ void MeshComponent::WorldTransformationMatrixIsUpdated(const Matrix& worldTransf
 	meshInstance_->SetWorldTransformationMatrix(worldTransformationMatrix);
 }
 
+void MeshComponent::SetIsRendered(bool isRendered)
+{
+	isRendered_ = isRendered;
+	meshInstance_->SetIsRendered(isRendered_);
+}
+
 void MeshComponent::UpdateRelativeTransformationMatrix()
 {
 	Component::UpdateRelativeTransformationMatrix();

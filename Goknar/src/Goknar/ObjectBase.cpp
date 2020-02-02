@@ -43,6 +43,15 @@ void ObjectBase::SetWorldScaling(const Vector3& scaling)
 	UpdateWorldTransformationMatrix();
 }
 
+void ObjectBase::SetIsRendered(bool isRendered)
+{
+	isRendered_ = isRendered;
+	for (int i = 0; i < components_.size(); i++)
+	{
+		components_[i]->SetIsRendered(isRendered);
+	}
+}
+
 void ObjectBase::UpdateWorldTransformationMatrix()
 {
 	// Since OpenGL uses column-major matriced and Goknar does not

@@ -60,6 +60,16 @@ public:
 
 	void Render() const;
 
+	void SetIsRendered(bool isRendered)
+	{
+		isRendered_ = isRendered;
+	}
+
+	bool GetIsRendered() const
+	{
+		return isRendered_;
+	}
+
 protected:
 
 private:
@@ -71,6 +81,8 @@ private:
 	int componentId_;
 
 	static int lastComponentId_;
+
+	bool isRendered_;
 };
 
 #endif
