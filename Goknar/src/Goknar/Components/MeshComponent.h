@@ -30,6 +30,12 @@ public:
 
 	void WorldTransformationMatrixIsUpdated(const Matrix& worldTransformationMatrix) override;
 
+	void SetIsRendered(bool isRendered)
+	{
+		isRendered_ = isRendered;
+		meshInstance_->SetIsRendered(isRendered_);
+	}
+
 protected:
 	inline void UpdateRelativeTransformationMatrix() override;
 
