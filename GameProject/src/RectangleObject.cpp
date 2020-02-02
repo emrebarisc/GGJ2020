@@ -3,7 +3,8 @@
 
 
 RectangleObject::RectangleObject()
-{		
+{
+	topLeft = topRight = bottomLeft = bottomRight = nullptr;
 }
 
 
@@ -16,24 +17,30 @@ bool RectangleObject::CheckRepaired()
 	return topLeft != nullptr && topRight != nullptr && bottomLeft != nullptr && bottomRight != nullptr;
 }
 
-void RectangleObject::AddPartToRectangle(RectanglePart* part)
+void RectangleObject::AddPartToRectangle(MovableObject* part)
 {
 	switch (part->GetType()) {
 	case 0:
-		if(topLeft == nullptr)
-			topLeft = part;
+		if (bottomLeft == nullptr) {
+			bottomLeft = dynamic_cast<RectanglePart*>(part);
+		}
 		break;
 	case 1:
-		if (topRight == nullptr)
-			topRight = part;
+		if (bottomRight == nullptr) {
+			bottomRight = dynamic_cast<RectanglePart*>(part);
+		}
 		break;
 	case 2:
-		if (bottomLeft == nullptr)
-			bottomLeft = part;
+		if (topLeft == nullptr) {
+			topLeft = dynamic_cast<RectanglePart*>(part);
+		}
 		break;
 	case 3:
-		if (bottomRight == nullptr)
-			bottomRight = part;
+		if (topRight == nullptr) {
+			topRight = dynamic_cast<RectanglePart*>(part);
+		}
 		break;
 	}
+	if (CheckRepaired())
+		std::cout << "YEYYYYY" << std::endl;
 }

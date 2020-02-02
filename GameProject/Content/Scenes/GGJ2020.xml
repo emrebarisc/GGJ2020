@@ -57,24 +57,24 @@
 
   <Meshes>
     <Mesh id = "0">
-      <Name>CubeTopLeft</Name>
-      <Material>0</Material>
-      <PLYPath>./Content/Meshes/Cube/CubeTopLeft.ply</PLYPath>
-    </Mesh>
-    <Mesh id = "1">
-      <Name>CubeTopRight</Name>
-      <Material>0</Material>
-      <PLYPath>./Content/Meshes/Cube/CubeTopRight.ply</PLYPath>
-    </Mesh>
-    <Mesh id = "2">
       <Name>CubeBottomLeft</Name>
       <Material>0</Material>
       <PLYPath>./Content/Meshes/Cube/CubeBottomLeft.ply</PLYPath>
     </Mesh>
-    <Mesh id = "3">
+    <Mesh id = "1">
       <Name>CubeBottomRight</Name>
       <Material>0</Material>
       <PLYPath>./Content/Meshes/Cube/CubeBottomRight.ply</PLYPath>
+    </Mesh>
+    <Mesh id = "2">
+      <Name>CubeTopLeft</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeTopLeft.ply</PLYPath>
+    </Mesh>
+    <Mesh id = "3">
+      <Name>CubeTopRight</Name>
+      <Material>0</Material>
+      <PLYPath>./Content/Meshes/Cube/CubeTopRight.ply</PLYPath>
     </Mesh>
 	</Meshes>
 

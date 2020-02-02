@@ -1,7 +1,6 @@
 #include "RepairableObject.h"
 
 
-
 RepairableObject::RepairableObject()
 {
 }
