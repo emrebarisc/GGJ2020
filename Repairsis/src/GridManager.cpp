@@ -34,7 +34,6 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		caller->StopMovement();
 		SetGridPosition(caller, gridPosition);
 		CheckAndSetObjectParent(caller, gridPosition);
-		PrintGridManager();
 
 		if(currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject();
 	}
@@ -43,10 +42,10 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 		caller->StopMovement();
 		SetGridPosition(caller, gridPosition);
 		CheckAndSetObjectParent(caller, gridPosition);
-		PrintGridManager();
 
 		if (currentObject_ == caller) MovableObjectFactory::GetInstance()->CreateMovableObject();
 	}
+	//PrintGridManager();
 }
 
 bool GridManager::IsGridEmpty(const Vector3& worldPosition)

@@ -25,6 +25,10 @@
     <Texture>
       <Path>./Content/Textures/T_RetroRadio.png</Path>
     </Texture>
+    <Texture>
+      <Name>UITexture</Name>
+      <Path>./Content/Textures/T_UI.png</Path>
+    </Texture>
   </Textures>
 
   <Shaders>
@@ -42,12 +46,35 @@
         Opaque
       </Model>
     </Shader>
+    <Shader id="1">
+      <Type>
+        SelfContained
+      </Type>
+      <VertexShaderPath>
+        ./Content/Shaders/UIVertexShader.glsl
+      </VertexShaderPath>
+      <FragmentShaderPath>
+        ./Content/Shaders/UIFragmentShader.glsl
+      </FragmentShaderPath>
+      <Model>
+        Opaque
+      </Model>
+    </Shader>
   </Shaders>
 	
 	<Materials>
     <Material id="0">
       <Shader id="0"/>
       <Texture id="0"/>
+      <AmbientReflectance>1.0 1.0 1.0</AmbientReflectance>
+      <DiffuseReflectance>1.0 0.0 0.0</DiffuseReflectance>
+      <SpecularReflectance>0.0 0.0 0.0</SpecularReflectance>
+      <PhongExponent>0</PhongExponent>
+    </Material>
+    <Material id="1">
+      <Shader id="1"/>
+      <Texture id="1"/>
+      <BlendModel>TwoSided</BlendModel>
       <AmbientReflectance>1.0 1.0 1.0</AmbientReflectance>
       <DiffuseReflectance>1.0 0.0 0.0</DiffuseReflectance>
       <SpecularReflectance>0.0 0.0 0.0</SpecularReflectance>
@@ -76,45 +103,61 @@
       <Material>0</Material>
       <PLYPath>./Content/Meshes/Cube/CubeTopRight.ply</PLYPath>
     </Mesh>
-	</Meshes>
+
+    <Mesh id = "4">
+      <Material>1</Material>
+      <Vertices>
+        0.0 0.0 5
+        1.0 0.0 5
+        0.0 -0.7714286 5
+        1.0 -0.7714286 5
+      </Vertices>
+      <Normals>
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+      </Normals>
+      <Faces>
+        1 0 2
+        1 2 3
+      </Faces>
+      <UVs>
+        0.0 0.015625
+        0.068359375 0.015625
+        0.0 0.0683
+        0.068359375 0.0683
+      </UVs>
+    </Mesh>
+
+    <Mesh id = "5">
+      <Material>1</Material>
+      <Vertices>
+        0.0 0.0 5
+        1.0 0.0 5
+        0.0 -0.3404255 5
+        1.0 -0.3404255 5
+      </Vertices>
+      <Normals>
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+        0.0 0.0 1.0
+      </Normals>
+      <Faces>
+        1 0 2
+        1 2 3
+      </Faces>
+      <UVs>
+        0.0 0.0683
+        0.0918 0.0683
+        0.0 0.09955
+        0.0918 0.09955
+      </UVs>
+    </Mesh>
+  </Meshes>
 
   <Objects>
-    <!--<MeshObject id = "0">
-      <RelativePosition>0 0 0</RelativePosition>
-      <RelativeRotation>0 0 0</RelativeRotation>
-      <RelativeScaling>1 1 1</RelativeScaling>
-      <WorldPosition>0 1.1 0</WorldPosition>
-      <WorldRotation>0 0 0</WorldRotation>
-      <WorldScaling>1 1 1</WorldScaling>
-      <Mesh>0</Mesh>
-    </MeshObject>
-    <MeshObject id = "1">
-      <RelativePosition>0 0 0</RelativePosition>
-      <RelativeRotation>0 0 0</RelativeRotation>
-      <RelativeScaling>1 1 1</RelativeScaling>
-      <WorldPosition>1.6 1.1 0</WorldPosition>
-      <WorldRotation>0 0 0</WorldRotation>
-      <WorldScaling>1 1 1</WorldScaling>
-      <Mesh>1</Mesh>
-    </MeshObject>
-    <MeshObject id = "0">
-      <RelativePosition>0 0 0</RelativePosition>
-      <RelativeRotation>0 0 0</RelativeRotation>
-      <RelativeScaling>1 1 1</RelativeScaling>
-      <WorldPosition>0 0 0</WorldPosition>
-      <WorldRotation>0 0 0</WorldRotation>
-      <WorldScaling>1 1 1</WorldScaling>
-      <Mesh>2</Mesh>
-    </MeshObject>
-    <MeshObject id = "1">
-      <RelativePosition>0 0 0</RelativePosition>
-      <RelativeRotation>0 0 0</RelativeRotation>
-      <RelativeScaling>1 1 1</RelativeScaling>
-      <WorldPosition>1.6 0 0</WorldPosition>
-      <WorldRotation>0 0 0</WorldRotation>
-      <WorldScaling>1 1 1</WorldScaling>
-      <Mesh>3</Mesh>
-    </MeshObject>-->
   </Objects>
 
 </Scene>

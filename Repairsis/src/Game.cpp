@@ -1,26 +1,15 @@
-#include <Goknar.h>
+#include "Game.h"
 
 // Engine includes
+#include "Goknar.h"
 #include "Goknar/Scene.h"
 
 // Game includes
 #include "GameController.h"
 #include "MovableObjectFactory.h"
+#include "UI.h"
 
 #include <chrono>
-
-class Game : public Application
-{
-public:
-	Game();
-
-	~Game() = default;
-
-	void Run() override;
-
-private:
-	GameController* gameController;
-};
 
 Game::Game() : Application()
 {
@@ -34,15 +23,17 @@ Game::Game() : Application()
 
 	lastFrameTimePoint = currentTimePoint;
 
-	gameController = GameController::GetInstance();
+	gameController_ = GameController::GetInstance();
 	MovableObjectFactory::GetInstance()->CreateMovableObject();
+
+	ui_ = new UI();
 }
 
 void Game::Run()
 {
 }
 
-Application *CreateApplication()
+Application* CreateApplication()
 {
 	return new Game();
 }

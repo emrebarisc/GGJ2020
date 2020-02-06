@@ -53,8 +53,8 @@ void MovableObject::StopMovement()
 	isMovementEnded_ = true;
 	canFall_ = false;
 	Vector3 currentPosition = GetWorldPosition();
-	Vector3 correctedPosition(currentPosition.x, ceil(currentPosition.y), currentPosition.z);
-	SetWorldPosition(correctedPosition);
+
+	SetWorldPosition(Vector3(currentPosition.x, ceil(currentPosition.y), currentPosition.z));
 }
 
 void MovableObject::RollLeft()

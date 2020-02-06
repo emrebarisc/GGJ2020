@@ -1,4 +1,4 @@
-workspace "GoknarEngine"
+workspace "REPAIRSIS"
 	architecture "x64"
 
 	configurations
@@ -79,7 +79,7 @@ project "Goknar"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../GameProject")
+			("{COPY} %{cfg.buildtarget.relpath} ../Repairsis")
 		}
 
 	filter "configurations:Debug"
@@ -94,8 +94,8 @@ project "Goknar"
 		defines "GOKNAR_SHIPPING"
 		symbols "On"
 
-project "GameProject"
-	location "GameProject"
+project "Repairsis"
+	location "Repairsis"
 	kind "ConsoleApp"
 	language "C++"
 	staticruntime "off"

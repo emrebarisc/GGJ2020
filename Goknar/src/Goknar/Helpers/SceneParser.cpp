@@ -546,11 +546,11 @@ void SceneParser::Parse(Scene* scene, char* filePath)
 			stream >> plyFilePath;
 
 			Mesh* mesh = ModelLoader::LoadPlyFile(plyFilePath.c_str());
-			mesh->SetMaterial(scene->GetMaterial(materialId));
 			if (mesh != nullptr)
 			{
 				scene->AddMesh(mesh);
 			}
+			mesh->SetMaterial(scene->GetMaterial(materialId));
 			stream.clear();
 			element = element->NextSiblingElement("Mesh");
 			continue;
@@ -595,7 +595,6 @@ void SceneParser::Parse(Scene* scene, char* filePath)
 		}
 		stream.clear();
 
-		const FaceArray* faceArray = mesh->GetFacesPointer();
 		child = element->FirstChildElement("UVs");
 		if (child)
 		{
@@ -608,6 +607,10 @@ void SceneParser::Parse(Scene* scene, char* filePath)
 				if (uvIndex < mesh->GetVertexCount())
 				{
 					mesh->SetVertexUV(uvIndex++, UV);
+				}
+				else
+				{
+					break;
 				}
 			}
 		}

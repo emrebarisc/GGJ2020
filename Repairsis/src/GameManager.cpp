@@ -1,7 +1,12 @@
 #include "GameManager.h"
 
+#include "Goknar/Application.h"
+#include "Goknar/Engine.h"
+
+#include "Game.h"
 #include "GridManager.h"
 #include "MovableObjectFactory.h"
+#include "UI.h"
 
 #include <iostream>
 
@@ -12,14 +17,25 @@ void GameManager::Restart()
 	GridManager* gridManagerInstance = GridManager::GetInstance();
 	gridManagerInstance->ClearGrid();
 
+	Game* game = dynamic_cast<Game*>(engine->GetApplication());
+	if (game)
+	{
+		game->GetUI()->HideGameOverUI();
+	}
+
 	isGameOver_ = false;
 
 	MovableObjectFactory::GetInstance()->CreateMovableObject();
+
 }
 
 void GameManager::GameOver()
 {
 	isGameOver_ = true;
 
-	std::cout << "Game is over!" << std::endl;
+	Game* game = dynamic_cast<Game*>(engine->GetApplication());
+	if (game)
+	{
+		game->GetUI()->ShowGameOverUI();
+	}
 }
