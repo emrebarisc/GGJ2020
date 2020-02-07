@@ -42,7 +42,6 @@ void GridManager::NotifyGridManager(MovableObject* caller, const Vector3& worldP
 			MovableObjectFactory::GetInstance()->CreateMovableObject();
 		}
 	}
-	//PrintGridManager();
 }
 
 bool GridManager::IsGridEmpty(const Vector3& worldPosition)
@@ -75,7 +74,11 @@ GridManager::GridManager() : gridWidth_(9), gridHeight_(16)
 
 GridManager::~GridManager()
 {
-
+	for (int y = 0; y < gridHeight_; y++)
+	{
+		delete[] grid_[y];
+	}
+	delete[] grid_;
 }
 
 void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i& gridPosition)

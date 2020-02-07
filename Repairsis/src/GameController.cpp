@@ -39,30 +39,54 @@ void GameController::HandleRestartInput()
 
 void GameController::RollCurrentObjectLeft()
 {
-	GridManager::GetInstance()->GetCurrentObject()->RollLeft();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->RollLeft();
+	}
 }
 
 void GameController::RollCurrentObjectRight()
 {
-	GridManager::GetInstance()->GetCurrentObject()->RollRight();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->RollRight();
+	}
 }
 
 void GameController::MoveCurrentObjectLeft()
 {
-	GridManager::GetInstance()->GetCurrentObject()->MoveLeft();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->MoveLeft();
+	}
 }
 
 void GameController::MoveCurrentObjectRight()
 {
-	GridManager::GetInstance()->GetCurrentObject()->MoveRight();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->MoveRight();
+	}
 }
 
 void GameController::IncreaseCurrentObjectFallSpeed()
 {
-	GridManager::GetInstance()->GetCurrentObject()->IncreaseFallSpeed();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->IncreaseFallSpeed();
+	}
 }
 
 void GameController::DecreaseCurrentObjectFallSpeed()
 {
-	GridManager::GetInstance()->GetCurrentObject()->DecreaseFallSpeed();
+	MovableObject* movableObject = GridManager::GetInstance()->GetCurrentObject();
+	if (movableObject)
+	{
+		movableObject->DecreaseFallSpeed();
+	}
 }
