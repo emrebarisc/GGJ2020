@@ -91,7 +91,8 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 			caller->SetParent(grid_[gridPosition.y][gridPosition.x + 1]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
-		else {
+		else
+		{
 			caller->SetParent(new RectangleObject());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
@@ -103,7 +104,8 @@ void GridManager::CheckAndSetObjectParent(MovableObject* caller, const Vector2i&
 			caller->SetParent(grid_[gridPosition.y][gridPosition.x - 1]->GetParent());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}
-		else {
+		else 
+		{
 			caller->SetParent(new RectangleObject());
 			caller->GetParent()->AddPartToRectangle(caller);
 		}

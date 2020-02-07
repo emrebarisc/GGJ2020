@@ -24,6 +24,7 @@ void GameManager::Restart()
 	}
 
 	isGameOver_ = false;
+	score_ = 0;
 
 	MovableObjectFactory::GetInstance()->CreateMovableObject();
 
@@ -37,5 +38,12 @@ void GameManager::GameOver()
 	if (game)
 	{
 		game->GetUI()->ShowGameOverUI();
+		std::cout << "Press Space To Restart." << std::endl;
 	}
+}
+
+void GameManager::IncreaseScore(float amount)
+{
+	score_ += amount;
+	std::cout << "Score: " << score_ << std::endl;
 }

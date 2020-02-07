@@ -1,6 +1,6 @@
 #include "RectangleObject.h"
 #include "GridManager.h"
-
+#include "GameManager.h"
 
 RectangleObject::RectangleObject()
 {
@@ -42,6 +42,8 @@ void RectangleObject::AddPartToRectangle(MovableObject* part)
 		break;
 	}
 	if (CheckRepaired()) {
+		GameManager::GetInstance()->IncreaseScore();
+
 		GridManager::GetInstance()->ClearRepairedObject(bottomLeft);
 		GridManager::GetInstance()->ClearRepairedObject(bottomRight);
 		GridManager::GetInstance()->ClearRepairedObject(topLeft);

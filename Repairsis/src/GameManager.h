@@ -16,6 +16,7 @@ public:
 
 	void Restart();
 	void GameOver();
+	void IncreaseScore(float amount = 1.f);
 
 	bool GetIsGameOver() const
 	{
@@ -23,7 +24,7 @@ public:
 	}
 
 private:
-	GameManager() : isGameOver_(false)
+	GameManager() : isGameOver_(false), score_(0.f)
 	{
 
 	}
@@ -34,6 +35,8 @@ private:
 	}
 
 	static GameManager* instance_;
+
+	float score_;
 
 	bool isGameOver_;
 };
