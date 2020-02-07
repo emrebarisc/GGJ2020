@@ -17,13 +17,6 @@ MovableObject::MovableObject() : isMovementEnded_(false), canFall_(true)
 {
 	SetTickable(true);
 	fallSpeed_ = 2.f;
-
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::Q, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollLeft, this));
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::E, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::RollRight, this));
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::A, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::MoveLeft, this));
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::D, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::MoveRight, this));
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::S, INPUT_ACTION::G_PRESS, std::bind(&MovableObject::IncreaseFallSpeed, this));
-	engine->GetInputManager()->AddKeyboardInputDelegate(KEY_MAP::S, INPUT_ACTION::G_RELEASE, std::bind(&MovableObject::DecreaseFallSpeed, this));
 }
 
 MovableObject::~MovableObject()
@@ -59,19 +52,16 @@ void MovableObject::StopMovement()
 
 void MovableObject::RollLeft()
 {
-	if (isMovementEnded_) return;
-	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(-90.f)));
+	//SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(-90.f)));
 }
 
 void MovableObject::RollRight()
 {
-	if (isMovementEnded_) return;
-	SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(90.f)));
+	//SetWorldRotation(GetWorldRotation() + Vector3(0.f, 0.f, DEGREE_TO_RADIAN(90.f)));
 }
 
 void MovableObject::MoveLeft()
 {
-	if (isMovementEnded_) return;
 	Vector3 newPosition = GetWorldPosition() + Vector3(-1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{
@@ -81,7 +71,6 @@ void MovableObject::MoveLeft()
 
 void MovableObject::MoveRight()
 {
-	if (isMovementEnded_) return;
 	Vector3 newPosition = GetWorldPosition() + Vector3(1.f, 0.f, 0.f);
 	if (GridManager::GetInstance()->IsGridEmpty(newPosition))
 	{

@@ -2,6 +2,7 @@
 
 #include "Renderer.h"
 
+#include "Goknar/Application.h"
 #include "Goknar/Engine.h"
 #include "Goknar/Scene.h"
 #include "Goknar/Log.h"

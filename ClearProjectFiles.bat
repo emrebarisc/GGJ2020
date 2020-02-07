@@ -1,4 +1,4 @@
-del /F/Q/S GoknarEngine.sln
+del /F/Q/S *.sln
 rmdir /Q/S .vs
 rmdir /Q/S bin
 rmdir /Q/S obj

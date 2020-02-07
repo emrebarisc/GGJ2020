@@ -1,7 +1,9 @@
 #ifndef __GAMECONTROLLER_H__
 #define __GAMECONTROLLER_H__
 
-class GameController
+#include "Goknar/Controller.h"
+
+class GameController : public Controller
 {
 public:
 	static GameController* GetInstance()
@@ -14,6 +16,7 @@ public:
 		return instance_;
 	}
 
+	void SetupInputs() override;
 	void HandleRestartInput();
 
 private:
@@ -23,6 +26,13 @@ private:
 	{
 
 	}
+
+	void RollCurrentObjectLeft();
+	void RollCurrentObjectRight();
+	void MoveCurrentObjectLeft();
+	void MoveCurrentObjectRight();
+	void IncreaseCurrentObjectFallSpeed();
+	void DecreaseCurrentObjectFallSpeed();
 
 	static GameController* instance_;
 };

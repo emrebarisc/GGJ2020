@@ -3,9 +3,11 @@
 
 #include <vector>
 
-#include "Application.h"
+#include "Core.h"
 
+class Application;
 class CameraManager;
+class Controller;
 class Editor;
 class InputManager;
 class Mesh;
@@ -61,6 +63,16 @@ public:
 		return application_;
 	}
 
+	Controller* GetController()
+	{
+		return controller_;
+	}
+
+	void SetController(Controller* controller)
+	{
+		controller_ = controller;
+	}
+
 	void SetApplication(Application* application);
 
 	void SetShaderEngineVariables(Shader* shader);
@@ -89,6 +101,7 @@ private:
 	WindowManager* windowManager_;
 	Editor* editor_;
 	CameraManager* cameraManager_;
+	Controller* controller_;
 
 	Application *application_;
 	

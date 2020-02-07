@@ -2,17 +2,19 @@
 
 // Goknar Libraries
 #include "Engine.h"
+
 #include "Application.h"
+#include "Controller.h"
+#include "Managers/CameraManager.h"
+#include "Editor/ImGuiEditor/ImGuiEditor.h"
+#include "Managers/InputManager.h"
 #include "Log.h"
 #include "ObjectBase.h"
+#include "Managers/ObjectManager.h"
+#include "Renderer/Renderer.h"
 #include "Scene.h"
 #include "Renderer/Shader.h"
 #include "Renderer/ShaderBuilder.h"
-#include "Editor/ImGuiEditor/ImGuiEditor.h"
-#include "Managers/CameraManager.h"
-#include "Managers/InputManager.h"
-#include "Managers/ObjectManager.h"
-#include "Renderer/Renderer.h"
 #include "Managers/WindowManager.h"
 
 // OpenGL Libraries
@@ -20,7 +22,7 @@
 
 GOKNAR_API Engine *engine;
 
-Engine::Engine() : deltaTime_(0.f), elapsedTime_(0.f)
+Engine::Engine() : deltaTime_(0.f), elapsedTime_(0.f), application_(nullptr), editor_(nullptr)
 {
 	engine = this;
 
@@ -88,6 +90,10 @@ void Engine::Init() const
 	GOKNAR_CORE_INFO("Application Initialization: {} s.", elapsedTime);
 	lastFrameTimePoint = currentTimePoint;
 
+	if (controller_)
+	{
+		controller_->SetupInputs();
+	}
 
 	renderer_->Init();
 	currentTimePoint = std::chrono::steady_clock::now();

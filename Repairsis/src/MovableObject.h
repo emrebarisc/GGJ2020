@@ -4,6 +4,7 @@
 
 class MovableObject : public ObjectBase
 {
+	friend class GameController;
 public:
 	MovableObject();
 	~MovableObject();
