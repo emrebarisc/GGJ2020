@@ -1548,7 +1548,7 @@ typedef ImGuiInputTextCallbackData  ImGuiTextEditCallbackData;
 // Helpers
 //-----------------------------------------------------------------------------
 
-// Helper: IM_NEW(), IM_PLACEMENT_NEW(), IM_DELETE() macros to call MemAlloc + Placement New, Placement Delete + MemFree
+// Helper: IM_NEW(), IM_PLACEMENT_NEW(), IM_DELETE() macros to call MemAlloc + Placement New, Placement Destroy + MemFree
 // We call C++ constructor on own allocated memory via the placement "new(ptr) Type()" syntax.
 // Defining a custom placement new() with a dummy parameter allows us to bypass including <new> which on some platforms complains when user has disabled exceptions.
 struct ImNewDummy {};

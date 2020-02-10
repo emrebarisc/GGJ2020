@@ -77,13 +77,6 @@ public:
 
 	void SetShaderEngineVariables(Shader* shader);
 
-	void RegisterObject(ObjectBase* object);
-	void RemoveObject(ObjectBase* object);
-	void AddToTickableObjects(ObjectBase* object);
-	void RemoveFromTickableObjects(ObjectBase* object);
-
-	void Exit();
-
 	float GetDeltaTime() const
 	{
 		return deltaTime_;
@@ -93,6 +86,15 @@ public:
 	{
 		return elapsedTime_;
 	}
+
+	void DestroyObject(ObjectBase* object);
+
+	void RegisterObject(ObjectBase* object);
+	void RemoveObject(ObjectBase* object);
+	void AddToTickableObjects(ObjectBase* object);
+	void RemoveFromTickableObjects(ObjectBase* object);
+
+	void Exit();
 
 private:
 	InputManager* inputManager_;

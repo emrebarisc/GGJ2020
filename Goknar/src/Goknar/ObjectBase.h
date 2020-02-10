@@ -18,8 +18,6 @@ class GOKNAR_API ObjectBase
 public:
     ObjectBase();
 
-	void operator delete(void* object);
-
 	virtual void BeginGame()
 	{
 
@@ -30,9 +28,13 @@ public:
 
     }
 
-	void Delete();
+	void Destroy();
 
     void SetTickable(bool tickable);
+	bool GetTickable()
+	{
+		return tickable_; 
+	}
 
 	void SetWorldPosition(const Vector3& position);
 	const Vector3& GetWorldPosition() const

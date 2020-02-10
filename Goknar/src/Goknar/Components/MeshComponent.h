@@ -16,7 +16,7 @@ public:
 	MeshComponent(ObjectBase* parent);
 	~MeshComponent();
 
-	void Delete() override;
+	void Destroy() override;
 
 	void SetMesh(Mesh* mesh);
 

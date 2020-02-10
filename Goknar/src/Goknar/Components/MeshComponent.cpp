@@ -16,7 +16,7 @@ MeshComponent::~MeshComponent()
 
 }
 
-void MeshComponent::Delete()
+void MeshComponent::Destroy()
 {
 	meshInstance_->RemoveFromRenderer();
 	delete meshInstance_;

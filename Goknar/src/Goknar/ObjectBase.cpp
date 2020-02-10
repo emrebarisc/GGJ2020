@@ -16,22 +16,7 @@ ObjectBase::ObjectBase() :
 	engine->RegisterObject(this);
 }
 
-void ObjectBase::operator delete(void* object)
-{
-	ObjectBase* objectBase = (ObjectBase *)object;
-
-	if (objectBase == nullptr) return;
-
-	engine->RemoveObject(objectBase);
-	if (objectBase->tickable_)
-	{
-		engine->RemoveFromTickableObjects(objectBase);
-	}
-	objectBase->Delete();
-	free(object);
-}
-
-void ObjectBase::Delete()
+void ObjectBase::Destroy()
 {
 	int componentSize = components_.size();
 	for (int componentIndex = 0; componentIndex < componentSize; componentIndex++)
@@ -40,6 +25,7 @@ void ObjectBase::Delete()
 		delete components_[componentIndex];
 		components_.erase(components_.begin() + componentIndex);
 	}
+	engine->DestroyObject(this);
 }
 
 void ObjectBase::SetTickable(bool tickable)

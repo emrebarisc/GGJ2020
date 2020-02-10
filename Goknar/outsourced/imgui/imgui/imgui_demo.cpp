@@ -2267,7 +2267,7 @@ static void ShowDemoWindowPopups()
             ImGui::Separator();
 
             //static int dummy_i = 0;
-            //ImGui::Combo("Combo", &dummy_i, "Delete\0Delete harder\0");
+            //ImGui::Combo("Combo", &dummy_i, "Destroy\0Destroy harder\0");
 
             static bool dont_ask_me_next_time = false;
             ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
@@ -3443,7 +3443,7 @@ struct ExampleAppConsole
                 }
                 else if (candidates.Size == 1)
                 {
-                    // Single match. Delete the beginning of the word and replace it entirely so we've got nice casing
+                    // Single match. Destroy the beginning of the word and replace it entirely so we've got nice casing
                     data->DeleteChars((int)(word_start-data->Buf), (int)(word_end-word_start));
                     data->InsertChars(data->CursorPos, candidates[0]);
                     data->InsertChars(data->CursorPos, " ");

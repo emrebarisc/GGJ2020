@@ -162,6 +162,16 @@ void Engine::Tick(float deltaTime)
 	}
 }
 
+void Engine::DestroyObject(ObjectBase* object)
+{
+	RemoveObject(object);
+	if (object->GetTickable())
+	{
+		engine->RemoveFromTickableObjects(object);
+	}
+	delete object;
+}
+
 void Engine::RegisterObject(ObjectBase* object)
 {
 	registeredObjects_.push_back(object);

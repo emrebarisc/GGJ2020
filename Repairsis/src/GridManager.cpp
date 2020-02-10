@@ -139,8 +139,7 @@ void GridManager::ClearGrid()
 				continue;
 			}
 
-			grid_[y][x]->Delete();
-			delete grid_[y][x];
+			grid_[y][x]->Destroy();
 			grid_[y][x] = nullptr;
 		}
 	}
@@ -157,7 +156,6 @@ void GridManager::ClearRepairedObject(MovableObject* caller)
 			{
 				if (grid_[y][x] == caller) {
 					grid_[y][x] = nullptr;
-					caller->SetIsRendered(false);
 					if (caller->GetType() == 2 || caller->GetType() == 3)
 					{
 						for (int i = y + 1; i < gridHeight_ - 1; i++)
@@ -169,6 +167,7 @@ void GridManager::ClearRepairedObject(MovableObject* caller)
 							}
 						}
 					}
+					caller->Destroy();
 					return;
 				}
 			}
