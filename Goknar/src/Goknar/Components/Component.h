@@ -16,7 +16,7 @@ public:
 
 	}
 
-	virtual void Delete() = 0;
+	virtual void Destroy() = 0;
 
 	const ObjectBase* GetParent() const
 	{

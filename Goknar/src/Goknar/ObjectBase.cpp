@@ -21,7 +21,7 @@ void ObjectBase::Destroy()
 	int componentSize = components_.size();
 	for (int componentIndex = 0; componentIndex < componentSize; componentIndex++)
 	{
-		components_[componentIndex]->Delete();
+		components_[componentIndex]->Destroy();
 		delete components_[componentIndex];
 		components_.erase(components_.begin() + componentIndex);
 	}
